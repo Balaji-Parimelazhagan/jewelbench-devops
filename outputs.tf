@@ -68,28 +68,28 @@ output "redis_port" {
 #   value       = module.ecr-backend-app.repository_url
 # }
 
-# # output "repository_name" {
-# #   description = "The name of the ECR repository"
-# #   value       = module.ecr.repository_name
-# # }
+# output "repository_name" {
+#   description = "The name of the ECR repository"
+#   value       = module.ecr.repository_name
+# }
 
-# # output "repository_arn" {
-# #   description = "The ARN of the ECR repository"
-# #   value       = module.ecr.repository_arn
-# # }
+# output "repository_arn" {
+#   description = "The ARN of the ECR repository"
+#   value       = module.ecr.repository_arn
+# }
 
 
-# # output "ecr_backend_app_url" {
-# #   value = module.ecr-backend-app.repository_url
-# # }
+output "ecr_backend_app_url" {
+  value = module.ecr-backend-app.repository_url
+}
 
-# # output "ecr_backend_app_name" {
-# #   value = module.ecr-backend-app.repository_name
-# # }
+output "ecr_backend_app_name" {
+  value = module.ecr-backend-app.repository_name
+}
 
-# # output "ecr_backend_app_arn" {
-# #   value = module.ecr-backend-app.repository_arn
-# # }
+output "ecr_backend_app_arn" {
+  value = module.ecr-backend-app.repository_arn
+}
 
 # # output "ecr_hd_model_url" {
 # #   value = module.ecr-hd-model.repository_url

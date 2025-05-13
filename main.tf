@@ -28,8 +28,6 @@ module "cloudfront" {
   s3_name                              = "${var.environment}-ui-${var.bucket_name}"
 }
 
-
-
 module "rds" {
   source          = "./db/rds"
   environment     = var.environment
@@ -59,14 +57,14 @@ module "redis" {
 }
 
 
-# module "ecr-backend-app" {
-#   source              = "./modules/ecr"
-#   repository_name     = "${var.environment}-backend-${var.project_name}"
-#   image_tag_mutability = "IMMUTABLE"
-#   scan_on_push        = true
-#   force_delete        = true
-#   tags                = var.AWS_TAGS
-# }
+module "ecr-backend-app" {
+  source              = "./modules/ecr"
+  repository_name     = "${var.environment}-backend-${var.project_name}"
+  image_tag_mutability = "IMMUTABLE"
+  scan_on_push        = true
+  force_delete        = true
+  tags                = var.AWS_TAGS
+}
 
 
 # # module "ecr-base-model" {
@@ -147,7 +145,7 @@ module "redis" {
 #   region = "us-east-1"
 #   private_subnet_ids = module.vpc.private_subnet_ids
 #   source="./modules/ecs"
-#   cluster_name="${var.environment}-cluster"
+#   cluster_name="${var.environment}-cluster-${var.project_name}"
 #   iam_role_prefix="ecs-node-role"
 #   iam_profile_prefix="ecs-node-profile"
 #   sg_prefix="ecs-node-sg"
@@ -165,7 +163,7 @@ module "redis" {
 #   ecs_task_role_name_prefix="ecs-task-role"
 #   ecs_log_group= "/ecs/jelwelbench/" 
 #   task_family        = "${var.environment}-backend-${var.project_name}"
-#   container_name     = "backend-continer"
+#   container_name     = "${var.environment}-backend-${var.project_name}-continer"
 #   container_port =80
 #   host_port=80
 #   task_cpu = 256
@@ -179,15 +177,15 @@ module "redis" {
 #   }]
 # target_value = 75
 # scale_out_cooldown= 300
-# ecs_task_security_group="ecs-security-group"
-# alb_security_name="alb-security-group"
+# ecs_task_security_group="${var.environment}-backend-${var.project_name}-ecs-sg"
+# alb_security_name="${var.environment}-backend-${var.project_name}-alb-sg"
 # scale_in_cooldown=300
-# scaling_policy_name="ecs-service-scaling-policy"
-# loadbalancer_name="jelwelbench-backend-alb"
-# alb_target_group_name="alb-tg"
+# scaling_policy_name="${var.environment}-backend-${var.project_name}-service-scaling-policy"
+# loadbalancer_name="${var.environment}-backend-${var.project_name}-alb"
+# alb_target_group_name="${var.environment}-be"
 # ecs_service_max_capacity=5
 # ecs_service_min_capacity=1
-# ecs_service_name="backend-service"
+# ecs_service_name="${var.environment}-backend-${var.project_name}-service"
 # }
 
 
