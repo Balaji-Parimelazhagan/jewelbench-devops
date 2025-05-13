@@ -1,5 +1,5 @@
 resource "aws_security_group" "rds_sg" {
-  name        = "${var.environment}-rds-sg"
+  name        = "${var.environment}-rds-${var.project_name}-security-group"
   description = "Allow PostgreSQL access"
   vpc_id      = var.vpc_id
 
@@ -19,33 +19,23 @@ resource "aws_security_group" "rds_sg" {
   }
 
   tags = {
-    Name = "${var.environment}-rds-sg"
+    Name = "${var.environment}-rds-${var.project_name}-security-group"
   }
 }
 
 resource "aws_db_subnet_group" "rds_subnet_group" {
-  name       = "${var.environment}-rds-subnet-group"
+  name       = "${var.environment}-rds-${var.project_name}-subnet"
   subnet_ids = var.subnet_ids
 
   tags = {
-    Name = "${var.environment}-rds-subnet-group"
+    Name = "${var.environment}-rds-${var.project_name}-subnet"
   }
 }
 
 
-# # DB Subnet Group
-# resource "aws_db_subnet_group" "rds_subnet_group" {
-#   name       = "${var.environment}-rds-subnet-group"
-#   subnet_ids = aws_subnet.db[*].id
-
-#   tags = {
-#     Name = "${var.environment}-rds-subnet-group"
-#   }
-# }
-
 # RDS PostgreSQL Instance
 resource "aws_db_instance" "postgres" {
-  identifier              = "${var.environment}-postgres-db"
+  identifier              = "${var.environment}-postgres-${var.project_name}-db"
   allocated_storage       = 20
   storage_type            = var.db_storage_type
   engine                  =  var.db_engine

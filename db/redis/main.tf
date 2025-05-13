@@ -1,5 +1,5 @@
 resource "aws_security_group" "redis_sg" {
-  name   = "${var.environment}-redis-sg"
+  name   = "${var.environment}-redis-${var.project_name}-sg"
   vpc_id      = var.vpc_id
 
   ingress {
@@ -17,23 +17,23 @@ resource "aws_security_group" "redis_sg" {
   }
 
   tags = {
-    Name = "${var.environment}-redis-sg"
+    Name = "${var.environment}-redis-${var.project_name}-sg"
   }
 }
 
 
 
 resource "aws_elasticache_subnet_group" "redis" {
-  name       = "${var.name}-subnet-group"
+  name       = "${var.environment}-redis-${var.project_name}-subnet-group"
   subnet_ids = var.subnet_ids
 
   tags = {
-    Name = "${var.name}-subnet-group"
+    Name = "${var.environment}-redis-${var.project_name}-subnet-group"
   }
 }
 
 resource "aws_elasticache_cluster" "redis" {
-  cluster_id           = "${var.name}-redis"
+  cluster_id           = "${var.environment}-redis-${var.project_name}"
   engine               = "redis"
   node_type            = var.node_type
   num_cache_nodes      = var.num_cache_nodes
@@ -43,6 +43,6 @@ resource "aws_elasticache_cluster" "redis" {
   security_group_ids   = [aws_security_group.redis_sg.id]
 
   tags = {
-    Name = "${var.name}-redis"
+    Name = "${var.environment}-redis-${var.project_name}"
   }
 }

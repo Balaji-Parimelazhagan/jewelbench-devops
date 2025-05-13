@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket         = "jewlbench-dev"
-    key            = "dev/terraform.tfstate"
-    region         = "eu-north-1"
+    bucket         = "jewelbench-terraform-state"
+    key            = "qa/terraform.tfstate"
+    region         = "us-east-1"
     encrypt        = true
   }
 }

@@ -3,6 +3,12 @@ variable "name" {
   description = "Prefix name for resources"
 }
 
+variable "project_name" {
+  description = "Project name"
+  type        = string
+}
+
+
 variable "node_type" {
   type        = string
   description = "Redis node type"

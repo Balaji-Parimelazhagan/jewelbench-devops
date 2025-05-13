@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"cloudfront","Source":"./frontend/cloudfront","Dir":"frontend/cloudfront"},{"Key":"rds","Source":"./db/rds","Dir":"db/rds"},{"Key":"redis","Source":"./db/redis","Dir":"db/redis"},{"Key":"s3","Source":"./frontend/s3","Dir":"frontend/s3"},{"Key":"vpc","Source":"./common/vpc","Dir":"common/vpc"}]}

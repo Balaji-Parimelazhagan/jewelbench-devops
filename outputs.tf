@@ -10,6 +10,7 @@ output "private_subnet_ids" {
   value = module.vpc.private_subnet_ids
 }
 
+####### S3 Outputs ####### 
 
 output "bucket_id" {
   value = module.s3.bucket_id
@@ -27,41 +28,45 @@ output "bucket_regional_domain_name" {
   value = module.s3.frontend_bucket_regional_domain_name
 }
 
-# output "db_name" {
-#   value       = var.db_name
-# }
+####### RDS Outputs ####### 
 
-# output "environment" {
-#   value       = var.environment
-# }
-
-# output "db_user" {
-#   value       = var.db_user
-#   sensitive   = true
-# }
-
-# output "db_instance_endpoint" {
-#   value = module.rds.db_instance_endpoint
-# }
-
-# output "db_instance_port" {
-#   value = module.rds.db_instance_port
-# }
-
-# output "redis_endpoint" {
-#   description = "Redis endpoint address"
-#   value       = module.redis.redis_endpoint
-# }
-
-# output "redis_port" {
-#   description = "Redis port"
-#   value       = module.redis.redis_port
-# }
-
-output "repository_url" {
-  description = "The URL of the created ECR repository"
-  value       = module.ecr-backend-app.repository_url
+output "db_name" {
+  value       = var.db_name
 }
+
+output "environment" {
+  value       = var.environment
+}
+
+output "db_user" {
+  value       = var.db_user
+  sensitive   = true
+}
+
+output "db_instance_endpoint" {
+  value = module.rds.db_instance_endpoint
+}
+
+output "db_instance_port" {
+  value = module.rds.db_instance_port
+}
+
+####### Redis Outputs ####### 
+
+output "redis_endpoint" {
+  description = "Redis endpoint address"
+  value       = module.redis.redis_endpoint
+}
+
+output "redis_port" {
+  description = "Redis port"
+  value       = module.redis.redis_port
+}
+
+# output "repository_url" {
+#   description = "The URL of the created ECR repository"
+#   value       = module.ecr-backend-app.repository_url
+# }
 
 # # output "repository_name" {
 # #   description = "The name of the ECR repository"

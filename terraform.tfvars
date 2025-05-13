@@ -1,6 +1,7 @@
 ################################# env #######################################################
 region               = "us-east-1"
 environment          = "qa"
+project_name         = "jewelbench"
 AWS_TAGS = {
   project        = "jewelbench"
   Owner          = "Team"
@@ -17,45 +18,26 @@ availability_zones   = ["us-east-1a", "us-east-1b", "us-east-1c"]
 create_eip = true
 
 
-bucket_name       = "dev-jewelbench-bucket"
+bucket_name       = "jewelbench"
 enable_versioning = true
 acl               = "private" #private → Only the bucket owner can access it.
 object_ownership  = "BucketOwnerPreferred" #Objects are owned by the bucket owner
 
 
 
-frontend_bucket_name    = "dev-jewelbench-bucket"
-frontend_bucket_regional_domain_name = "dev-jewelbench-bucket.s3.us-east-1.amazonaws.com"
+frontend_bucket_name    = "jewelbench"
+frontend_bucket_regional_domain_name = "jewelbench.s3.us-east-1.amazonaws.com"
 
 allowed_cidrs   = ["10.0.0.0/16"]
-db_name         = "testing_db"
+db_name         = "qa_jewelbench_be"
 db_user         = "jewelbench"
-db_password     = "Password123!" 
+db_password     = "Jewelbench_QA_2025" 
 db_storage_type = "gp2"
 db_engine       = "postgres"
 engine_version  = "15.7"
 instance_class  = "db.m5.large"
 
 
-redis_name         = "dev"
+redis_name         = "qa"
 redis_node_type    = "cache.t3.medium"
 redis_num_nodes    = 1
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
