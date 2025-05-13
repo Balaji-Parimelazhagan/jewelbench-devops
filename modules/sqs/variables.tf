@@ -1,6 +1,6 @@
-variable "name" {
+variable "sqs_name" {
   description = "The name of the SQS FIFO queue (without .fifo suffix)"
-  type        = string
+  type        = list(string)
 }
 
 variable "content_based_deduplication" {

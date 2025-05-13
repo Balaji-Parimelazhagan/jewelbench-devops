@@ -12,9 +12,7 @@ data "aws_iam_policy_document" "sh_sqs_policy" {
       "sqs:SendMessage",
       "sqs:ReceiveMessage"
     ]
-    resources = [
-      aws_sqs_queue.fifo.arn
-    ]
+    resources = [for queue in aws_sqs_queue.fifo : queue.arn]
   }
 }
 

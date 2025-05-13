@@ -358,11 +358,6 @@ variable "redis_num_nodes" {
 # }
 
 
-# variable "sqs_name" {
-#   description = "The name of the SQS FIFO queue (without .fifo suffix)"
-#   type        = string
-# }
-
 # variable "content_based_deduplication" {
 #   description = "Enable content-based deduplication"
 #   type        = bool

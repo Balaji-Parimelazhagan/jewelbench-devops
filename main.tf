@@ -67,55 +67,49 @@ module "ecr-backend-app" {
 }
 
 
-# # module "ecr-base-model" {
-# #   source              = "./modules/ecr"
-# #   repository_name     = "base-model"
-# #   image_tag_mutability = "IMMUTABLE"
-# #   scan_on_push        = true
-# #   force_delete        = true
-# #   tags                = var.AWS_TAGS
-# # }
-
-
-# # module "ecr-hd-model" {
-# #   source              = "./modules/ecr"
-# #   repository_name     = "hd-model"
-# #   image_tag_mutability = "IMMUTABLE"
-# #   scan_on_push        = true
-# #   force_delete        = true
-# #   tags                = var.AWS_TAGS
-# # }
-
-
-# # module "ecr-text-to-3d-model" {
-# #   source              = "./modules/ecr"
-# #   repository_name     = "text-to-model"
-# #   image_tag_mutability = "IMMUTABLE"
-# #   scan_on_push        = true
-# #   force_delete        = true
-# #   tags                = var.AWS_TAGS
-# # }
-
-# # module "base_model_fifo_queue" {
-# #   source = "./modules/sqs"
-# #   name                         = "base"
-# #   content_based_deduplication = true
-# #   delay_seconds                = 0
-# #   visibility_timeout_seconds   = 45
-# #   message_retention_seconds    = 86400
-# #   receive_wait_time_seconds    = 10
-# # }
-
-
-# module "hd_model_fifo_queue" {
-#   source = "./modules/sqs"
-#   name                         = "testing-model"
-#   content_based_deduplication = true
-#   delay_seconds                = 0
-#   visibility_timeout_seconds   = 45
-#   message_retention_seconds    = 86400
-#   receive_wait_time_seconds    = 10
+# module "ecr-base-model" {
+#   source              = "./modules/ecr"
+#   repository_name     = "base-model"
+#   image_tag_mutability = "IMMUTABLE"
+#   scan_on_push        = true
+#   force_delete        = true
+#   tags                = var.AWS_TAGS
 # }
+
+
+# module "ecr-hd-model" {
+#   source              = "./modules/ecr"
+#   repository_name     = "hd-model"
+#   image_tag_mutability = "IMMUTABLE"
+#   scan_on_push        = true
+#   force_delete        = true
+#   tags                = var.AWS_TAGS
+# }
+
+
+# module "ecr-text-to-3d-model" {
+#   source              = "./modules/ecr"
+#   repository_name     = "text-to-model"
+#   image_tag_mutability = "IMMUTABLE"
+#   scan_on_push        = true
+#   force_delete        = true
+#   tags                = var.AWS_TAGS
+# }
+
+
+module "ai_model_fifo_queues" {
+  source                      = "./modules/sqs"
+  sqs_name                    = [
+    "${var.environment}-${var.project_name}-basic-model.fifo",
+    "${var.environment}-${var.project_name}-hd-model.fifo",
+    "${var.environment}-${var.project_name}-text-to-3d-model.fifo"
+  ]
+  content_based_deduplication = true
+  delay_seconds              = 0
+  visibility_timeout_seconds = 45
+  message_retention_seconds  = 86400
+  receive_wait_time_seconds  = 10
+}
 
 
 

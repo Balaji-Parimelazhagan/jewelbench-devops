@@ -1,5 +1,6 @@
 resource "aws_sqs_queue" "fifo" {
-  name                      = "${var.name}.fifo"
+  name = each.key
+  for_each = toset(var.sqs_name)
   fifo_queue                = true
   content_based_deduplication = var.content_based_deduplication
   delay_seconds             = 0
